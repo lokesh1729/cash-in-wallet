@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Button from "./components/button";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="flex flex-row justify-center mt-4">
+            <div className="flex flex-row justify-between w-2/3">
+                <Button buttonText="Add Cash In ↓" />
+                <Button buttonText="Add Cash Out ↑" variant="danger" />
+            </div>
+        </div>
+    );
 }
 
 export default App;
