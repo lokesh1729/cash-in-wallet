@@ -1,0 +1,15 @@
+.ReactModal {
+    position: absolute;
+    width: 48vw;
+    height: 36vh;
+    top: 40px;
+    right: 25%;
+    bottom: 40px;
+    left: 25%;
+    border: 1px solid #ccc;
+    background: #fff;
+    overflow: auto;
+    borderRadius: 4px;
+    outline: none;
+    padding: 20px;
+}

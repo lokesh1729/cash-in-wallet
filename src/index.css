@@ -10,4 +10,8 @@
     .btn-red {
         @apply bg-red-500 border border-white border-solid cursor-pointer p-4 rounded-md text-base text-white focus:outline-none focus:ring;
     }
+
+    .input {
+        @apply p-4 leading-normal text-base border border-solid border-blue-500 rounded-md focus:outline-none;
+    }
 }
