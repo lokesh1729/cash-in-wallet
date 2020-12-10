@@ -41,7 +41,7 @@ function App() {
                         defaultValue={0}
                         onChange={(event) => changeCashIn(event.target.value)}
                         type="number"
-                        className="input w-36 mb-8"
+                        className="input w-32 mb-8 text-2xl"
                     />
                     <Button buttonText="Add CashIn ↓" onClick={toggleCashIn} />
                 </div>
@@ -57,7 +57,7 @@ function App() {
                         min={0}
                         defaultValue={0}
                         type="number"
-                        className="input w-36 mb-8"
+                        className="input w-32 mb-8 text-2xl"
                         onChange={(event) => changeCashOut(event.target.value)}
                     />
                     <Button
