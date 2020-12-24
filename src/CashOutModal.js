@@ -13,6 +13,7 @@ export function CashOutModal({
             isOpen={cashOutModalOpen}
             shouldCloseOnOverlayClick
             shouldCloseOnEsc
+            onRequestClose={toggleCashOut}
         >
             <div className="h-full flex flex-col justify-center items-center">
                 <input

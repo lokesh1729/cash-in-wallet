@@ -7,8 +7,9 @@ export function CashInModal({ cashInModalOpen, changeCashIn, toggleCashIn }) {
         <ReactModal
             className="ReactModal"
             isOpen={cashInModalOpen}
-            shouldCloseOnOverlayClick
-            shouldCloseOnEsc
+            shouldCloseOnOverlayClick={true}
+            shouldCloseOnEsc={true}
+            onRequestClose={toggleCashIn}
         >
             <div className="h-full flex flex-col justify-center items-center">
                 <input
