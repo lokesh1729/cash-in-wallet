@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import ReactModal from "react-modal";
+import { Helmet } from "react-helmet";
 import "./App.css";
+import { CashInModal } from "./CashInModal";
+import { CashOutModal } from "./CashOutModal";
 import Button from "./components/button";
 
 function App() {
@@ -16,6 +18,11 @@ function App() {
     }
     return (
         <div className="flex flex-col justify-start m-8">
+            <Helmet>
+                <title>
+                    Cash In Wallet - An app to manage cash in your wallet
+                </title>
+            </Helmet>
             <div className="flex flex-row justify-center">
                 <div className="flex flex-row justify-between w-2/3">
                     <Button buttonText="Add Cash In ↓" onClick={toggleCashIn} />
@@ -29,43 +36,16 @@ function App() {
             <p className="text-4xl text-black mt-8 text-center">
                 Balance: {cashIn - cashOut}
             </p>
-            <ReactModal
-                className="ReactModal"
-                isOpen={cashInModalOpen}
-                shouldCloseOnOverlayClick
-                shouldCloseOnEsc
-            >
-                <div className="h-full flex flex-col justify-center items-center">
-                    <input
-                        min={0}
-                        defaultValue={0}
-                        onChange={(event) => changeCashIn(event.target.value)}
-                        type="number"
-                        className="input w-32 mb-8 text-2xl"
-                    />
-                    <Button buttonText="Add CashIn ↓" onClick={toggleCashIn} />
-                </div>
-            </ReactModal>
-            <ReactModal
-                className="ReactModal"
-                isOpen={cashOutModalOpen}
-                shouldCloseOnOverlayClick
-                shouldCloseOnEsc
-            >
-                <div className="h-full flex flex-col justify-center items-center">
-                    <input
-                        min={0}
-                        defaultValue={0}
-                        type="number"
-                        className="input w-32 mb-8 text-2xl"
-                        onChange={(event) => changeCashOut(event.target.value)}
-                    />
-                    <Button
-                        buttonText="Add CashOut ↑"
-                        onClick={toggleCashOut}
-                    />
-                </div>
-            </ReactModal>
+            <CashInModal
+                cashInModalOpen={cashInModalOpen}
+                changeCashIn={changeCashIn}
+                toggleCashIn={toggleCashIn}
+            />
+            <CashOutModal
+                cashOutModalOpen={cashOutModalOpen}
+                changeCashOut={changeCashOut}
+                toggleCashOut={toggleCashOut}
+            />
         </div>
     );
 }
