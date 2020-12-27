@@ -1,20 +1,40 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import { Helmet } from "react-helmet";
+import { CASH_IN, CASH_OUT } from "./Actions";
 import "./App.css";
 import { CashInModal } from "./CashInModal";
 import { CashOutModal } from "./CashOutModal";
 import Button from "./components/button";
 
-function App() {
-    const [cashInModalOpen, toggleCashInModal] = useState(false);
-    const [cashOutModalOpen, toggleCashOutModal] = useState(false);
-    const [cashIn, changeCashIn] = useState(0);
-    const [cashOut, changeCashOut] = useState(0);
-    function toggleCashIn() {
-        toggleCashInModal(!cashInModalOpen);
+function cashReducer(state, action) {
+    switch (action.type) {
+        case CASH_IN:
+            return {
+                ...state,
+                cashIn: { comment: action.comment, value: action.value },
+            };
+        case CASH_OUT:
+            return {
+                ...state,
+                cashOut: { comment: action.comment, value: action.value },
+            };
+        default:
+            throw new Error();
     }
-    function toggleCashOut() {
-        toggleCashOutModal(!cashOutModalOpen);
+}
+
+function App() {
+    const [cashInModalOpen, _toggleCashInModal] = useState(false);
+    const [cashOutModalOpen, _toggleCashOutModal] = useState(false);
+    const [totalCash, cashDispatch] = useReducer(cashReducer, {
+        cashIn: { comment: "", value: 0 },
+        cashOut: { comment: "", value: 0 },
+    });
+    function toggleCashInModal() {
+        _toggleCashInModal(!cashInModalOpen);
+    }
+    function toggleCashOutModal() {
+        _toggleCashOutModal(!cashOutModalOpen);
     }
     return (
         <div className="flex flex-col justify-start m-8">
@@ -25,26 +45,29 @@ function App() {
             </Helmet>
             <div className="flex flex-row justify-center">
                 <div className="flex flex-row justify-between w-2/3">
-                    <Button buttonText="Add Cash In ↓" onClick={toggleCashIn} />
+                    <Button
+                        buttonText="Add Cash In ↓"
+                        onClick={toggleCashInModal}
+                    />
                     <Button
                         buttonText="Add CashOut ↑"
-                        onClick={toggleCashOut}
+                        onClick={toggleCashOutModal}
                         variant="danger"
                     />
                 </div>
             </div>
             <p className="text-4xl text-black mt-8 text-center">
-                Balance: {cashIn - cashOut}
+                Balance: {totalCash.cashIn.value - totalCash.cashOut.value}
             </p>
             <CashInModal
                 cashInModalOpen={cashInModalOpen}
-                changeCashIn={changeCashIn}
-                toggleCashIn={toggleCashIn}
+                cashDispatch={cashDispatch}
+                toggleCashIn={toggleCashInModal}
             />
             <CashOutModal
                 cashOutModalOpen={cashOutModalOpen}
-                changeCashOut={changeCashOut}
-                toggleCashOut={toggleCashOut}
+                cashDispatch={cashDispatch}
+                toggleCashOut={toggleCashOutModal}
             />
         </div>
     );
