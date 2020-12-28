@@ -1,5 +1,4 @@
 import React, { useReducer, useState } from "react";
-import { Helmet } from "react-helmet";
 import { CASH_IN, CASH_OUT } from "./Actions";
 import "./App.css";
 import { CashInModal } from "./CashInModal";
@@ -38,11 +37,6 @@ function App() {
     }
     return (
         <div className="flex flex-col justify-start m-8">
-            <Helmet>
-                <title>
-                    Cash In Wallet - An app to manage cash in your wallet
-                </title>
-            </Helmet>
             <div className="flex flex-row justify-center">
                 <div className="flex flex-row justify-between w-2/3">
                     <Button
