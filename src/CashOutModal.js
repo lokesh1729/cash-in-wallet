@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 import { CASH_OUT } from "./Actions";
 import Button from "./components/button";
 
-export function CashOutModal({
+export default function CashOutModal({
     cashOutModalOpen,
     cashDispatch,
     toggleCashOut,
@@ -13,7 +13,7 @@ export function CashOutModal({
     function addCashOut() {
         cashDispatch({
             type: CASH_OUT,
-            value: cashOut,
+            amount: cashOut,
             comment: cashOutComment,
         });
         toggleCashOut();
@@ -32,7 +32,9 @@ export function CashOutModal({
                     defaultValue={0}
                     type="number"
                     className="input w-32 mb-8 text-2xl"
-                    onChange={(event) => changeCashOut(event.target.value)}
+                    onChange={(event) =>
+                        changeCashOut(parseInt(event.target.value))
+                    }
                 />
                 <input
                     type="text"

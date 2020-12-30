@@ -3,11 +3,19 @@ import ReactModal from "react-modal";
 import { CASH_IN } from "./Actions";
 import Button from "./components/button";
 
-export function CashInModal({ cashInModalOpen, cashDispatch, toggleCashIn }) {
+export default function CashInModal({
+    cashInModalOpen,
+    cashDispatch,
+    toggleCashIn,
+}) {
     const [cashIn, changeCashIn] = useState(0);
     const [cashInComment, changeCashInComment] = useState("");
     function addCashIn() {
-        cashDispatch({ type: CASH_IN, value: cashIn, comment: cashInComment });
+        cashDispatch({
+            type: CASH_IN,
+            amount: cashIn,
+            comment: cashInComment,
+        });
         toggleCashIn();
     }
     return (
@@ -22,7 +30,9 @@ export function CashInModal({ cashInModalOpen, cashDispatch, toggleCashIn }) {
                 <input
                     min={0}
                     defaultValue={0}
-                    onChange={(event) => changeCashIn(event.target.value)}
+                    onChange={(event) =>
+                        changeCashIn(parseInt(event.target.value))
+                    }
                     type="number"
                     className="input w-32 mb-8 text-2xl"
                 />

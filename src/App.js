@@ -1,22 +1,52 @@
 import React, { useReducer, useState } from "react";
+import ReactModal from "react-modal";
 import { CASH_IN, CASH_OUT } from "./Actions";
 import "./App.css";
-import { CashInModal } from "./CashInModal";
-import { CashOutModal } from "./CashOutModal";
+import CashFlowDetails from "./CashFlowDetails";
+import CashInModal from "./CashInModal";
+import CashOutModal from "./CashOutModal";
 import Button from "./components/button";
 
 function cashReducer(state, action) {
+    const result = {
+        comment: action.comment,
+        amount: action.amount,
+        transactionType: action.type,
+        createdDate: new Date(),
+    };
     switch (action.type) {
         case CASH_IN:
-            return {
+            return [
+                {
+                    ...result,
+                    balance:
+                        state.length === 0
+                            ? action.amount
+                            : state[0].balance + action.amount,
+                    totalCashIn:
+                        state.length === 0
+                            ? action.amount
+                            : state[0].totalCashIn + action.amount,
+                    totalCashOut: state.totalCashOut,
+                },
                 ...state,
-                cashIn: { comment: action.comment, value: action.value },
-            };
+            ];
         case CASH_OUT:
-            return {
+            return [
+                {
+                    ...result,
+                    balance:
+                        state.length === 0
+                            ? action.amount
+                            : state[0].balance - action.amount,
+                    totalCashOut:
+                        state.length === 0
+                            ? action.amount
+                            : state[0].totalCashOut + action.amount,
+                    totalCashIn: state.totalCashIn,
+                },
                 ...state,
-                cashOut: { comment: action.comment, value: action.value },
-            };
+            ];
         default:
             throw new Error();
     }
@@ -25,10 +55,7 @@ function cashReducer(state, action) {
 function App() {
     const [cashInModalOpen, _toggleCashInModal] = useState(false);
     const [cashOutModalOpen, _toggleCashOutModal] = useState(false);
-    const [totalCash, cashDispatch] = useReducer(cashReducer, {
-        cashIn: { comment: "", value: 0 },
-        cashOut: { comment: "", value: 0 },
-    });
+    const [transactions, cashDispatch] = useReducer(cashReducer, []);
     function toggleCashInModal() {
         _toggleCashInModal(!cashInModalOpen);
     }
@@ -36,8 +63,8 @@ function App() {
         _toggleCashOutModal(!cashOutModalOpen);
     }
     return (
-        <div className="flex flex-col justify-start m-8">
-            <div className="flex flex-row justify-center">
+        <div className="flex flex-col justify-start w-screen h-screen bg-gray-200">
+            <div className="flex flex-row justify-center bg-white my-8 py-4">
                 <div className="flex flex-row justify-between w-2/3">
                     <Button
                         buttonText="Add Cash In ↓"
@@ -50,9 +77,10 @@ function App() {
                     />
                 </div>
             </div>
-            <p className="text-4xl text-black mt-8 text-center">
-                Balance: {totalCash.cashIn.value - totalCash.cashOut.value}
+            <p className="boldText text-3xl text-center bg-white py-4 my-4">
+                Balance: {transactions.length > 0 ? transactions[0].balance : 0}
             </p>
+            <CashFlowDetails transactions={transactions} />
             <CashInModal
                 cashInModalOpen={cashInModalOpen}
                 cashDispatch={cashDispatch}
@@ -66,5 +94,7 @@ function App() {
         </div>
     );
 }
+
+ReactModal.setAppElement("#root");
 
 export default App;

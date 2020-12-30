@@ -14,4 +14,20 @@
     .input {
         @apply p-4 leading-normal text-base border border-solid border-blue-500 rounded-md focus:outline-none;
     }
+
+    .boldText {
+        @apply text-gray-700 font-bold text-base font-sans;
+    }
+
+    .cashFlowDetails {
+        @apply text-gray-500 text-sm font-semibold;
+    }
+
+    .cashFlowCard {
+        @apply flex flex-row justify-between border-b border-solid border-gray-300 px-8 py-2;
+    }
+
+    .cashFlowContainer {
+        @apply bg-white shadow-md w-full;
+    }
 }
