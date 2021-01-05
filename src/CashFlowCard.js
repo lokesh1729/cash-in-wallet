@@ -9,12 +9,10 @@ export default function CashFlowCard({
     balance,
 }) {
     return (
-        <div className="cashFlowContainer">
-            <div className="cashFlowCard">
+        <div className="cardContainer">
+            <div className="flexWithBorderPadding">
                 <div className="flex-40p">
-                    <span className="cashFlowDetails">
-                        {createdDate.toDateString()}
-                    </span>
+                    <span className="graySmallSemiboldFont">{createdDate}</span>
                     <p className="boldText cashFlowDetails text-gray-900">
                         {comment}
                     </p>

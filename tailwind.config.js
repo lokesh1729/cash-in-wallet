@@ -8,6 +8,11 @@ module.exports = {
                 "30p": "1 1 30%",
                 "40p": "1 1 40%",
             },
+            height: {
+                108: "27rem",
+                120: "30rem",
+                144: "36rem",
+            },
         },
     },
     variants: {

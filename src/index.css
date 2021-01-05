@@ -19,15 +19,19 @@
         @apply text-gray-700 font-bold text-base font-sans;
     }
 
-    .cashFlowDetails {
+    .graySmallSemiboldFont {
         @apply text-gray-500 text-sm font-semibold;
     }
 
-    .cashFlowCard {
+    .flexWithBorderPadding {
         @apply flex flex-row justify-between border-b border-solid border-gray-300 px-8 py-2;
     }
 
-    .cashFlowContainer {
+    .cardContainer {
         @apply bg-white shadow-md w-full;
+    }
+
+    .highlight {
+        @apply text-2xl bg-yellow-300 font-serif p-2 rounded-sm text-gray-700;
     }
 }

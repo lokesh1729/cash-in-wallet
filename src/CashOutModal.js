@@ -18,6 +18,10 @@ export default function CashOutModal({
         });
         toggleCashOut();
     }
+    function resetState() {
+        changeCashOut(0);
+        changeCashOutComment("");
+    }
     return (
         <ReactModal
             className="ReactModal"
@@ -25,6 +29,7 @@ export default function CashOutModal({
             shouldCloseOnOverlayClick
             shouldCloseOnEsc
             onRequestClose={toggleCashOut}
+            onAfterOpen={resetState}
         >
             <div className="h-full flex flex-col justify-center items-center">
                 <input
