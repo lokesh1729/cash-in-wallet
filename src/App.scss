@@ -9,7 +9,18 @@
     border: 1px solid #ccc;
     background: #fff;
     overflow: auto;
-    borderRadius: 4px;
+    border-radius: 4px;
     outline: none;
     padding: 20px;
+}
+
+#filterTransacionsWrapper {
+    min-height: 5rem;
+}
+
+#searchTransactions {
+    &:focus {
+        outline: none;
+        border: 1px solid #1860e1;
+    }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { CASH_IN } from "./Actions";
+import { CASH_IN } from "../common/Actions";
 
 export default function CashFlowCard({
     createdDate,

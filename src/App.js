@@ -1,14 +1,16 @@
 import React, { useEffect, useReducer, useRef, useState } from "react";
 import ReactModal from "react-modal";
-import { CASH_IN, CASH_OUT, INITIALIZE } from "./Actions";
-import "./App.css";
-import CashFlowDetails from "./CashFlowDetails";
-import CashInModal from "./CashInModal";
-import CashOutModal from "./CashOutModal";
+import { INITIALIZE } from "./common/Actions";
+import "./App.scss";
+import CashFlowDetails from "./components/CashFlowDetails";
+import CashInModal from "./components/CashInModal";
+import CashOutModal from "./components/CashOutModal";
 import Button from "./components/button";
 import firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/database";
+import FilterTransactions from "./components/FilterTransactions";
+import cashReducer from "./common/CashReducer";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCZfP0suzdKmbsl_-YrOfmhTUXKdifg6hM",
@@ -24,54 +26,6 @@ if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
 }
 firebase.analytics();
-
-function cashReducer(state, action) {
-    const result = {
-        comment: action.comment,
-        amount: action.amount,
-        transactionType: action.type,
-        createdDate: new Date().toDateString(),
-    };
-    switch (action.type) {
-        case CASH_IN:
-            return [
-                {
-                    ...result,
-                    balance:
-                        state.length === 0
-                            ? action.amount
-                            : state[0].balance + action.amount,
-                    totalCashIn:
-                        state.length === 0
-                            ? action.amount
-                            : state[0].totalCashIn + action.amount,
-                    totalCashOut:
-                        state.length === 0 ? 0 : state[0].totalCashOut,
-                },
-                ...state,
-            ];
-        case CASH_OUT:
-            return [
-                {
-                    ...result,
-                    balance:
-                        state.length === 0
-                            ? action.amount
-                            : state[0].balance - action.amount,
-                    totalCashOut:
-                        state.length === 0
-                            ? action.amount
-                            : state[0].totalCashOut + action.amount,
-                    totalCashIn: state.length === 0 ? 0 : state[0].totalCashIn,
-                },
-                ...state,
-            ];
-        case INITIALIZE:
-            return action.defaultItems;
-        default:
-            throw new Error("a valid action object is required");
-    }
-}
 
 function App() {
     const [cashInModalOpen, _toggleCashInModal] = useState(false);
@@ -112,7 +66,7 @@ function App() {
     }, [transactions]);
     return (
         <div className="flex flex-col justify-start w-screen h-screen bg-gray-200">
-            <div className="flex flex-row justify-center bg-white my-8 py-4">
+            <div className="flex flex-row justify-center bg-white my-4 py-4">
                 <div className="flex flex-row justify-between w-2/3">
                     <Button
                         buttonText="Add Cash In ↓"
@@ -124,6 +78,10 @@ function App() {
                         variant="danger"
                     />
                 </div>
+            </div>
+            <FilterTransactions />
+            <div className="text-base text-blue-500 text-center my-2">
+                Showing {transactions.length} entries
             </div>
             <div className="flexWithBorderPadding justify-around bg-white w-full">
                 <span className="highlight">

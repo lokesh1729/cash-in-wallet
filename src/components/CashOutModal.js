@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-import { CASH_OUT } from "./Actions";
-import Button from "./components/button";
+import { CASH_OUT } from "../common/Actions";
+import Button from "./button";
 
 export default function CashOutModal({
     cashOutModalOpen,

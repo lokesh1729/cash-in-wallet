@@ -1,0 +1,11 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "workbench.settings.editor": "json",
+        "javascript.format.enable": false
+    }
+}
