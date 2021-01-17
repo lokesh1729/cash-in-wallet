@@ -83,19 +83,29 @@ function App() {
             <div className="text-base text-blue-500 text-center my-2">
                 Showing {transactions.length} entries
             </div>
-            <div className="flexWithBorderPadding justify-around bg-white w-full">
-                <span className="highlight">
-                    Total Cash In:{" "}
-                    {transactions.length > 0 ? transactions[0].totalCashIn : 0}
-                </span>
-                <span className="boldText text-2xl p-2">
-                    Balance:{" "}
-                    {transactions.length > 0 ? transactions[0].balance : 0}
-                </span>
-                <span className="highlight">
-                    Total Cash Out:{" "}
-                    {transactions.length > 0 ? transactions[0].totalCashOut : 0}
-                </span>
+            <div className="flex flex-col bg-white w-full">
+                <div className="text-sm text-gray-800 text-left mx-8 my-2">
+                    * by default it shows only the current month transactions.
+                    Apply filters to refine results.
+                </div>
+                <div className="flexWithBorderPadding">
+                    <span className="highlight">
+                        Total Cash In:{" "}
+                        {transactions.length > 0
+                            ? transactions[0].totalCashIn
+                            : 0}
+                    </span>
+                    <span className="boldText text-2xl p-2">
+                        Balance:{" "}
+                        {transactions.length > 0 ? transactions[0].balance : 0}
+                    </span>
+                    <span className="highlight">
+                        Total Cash Out:{" "}
+                        {transactions.length > 0
+                            ? transactions[0].totalCashOut
+                            : 0}
+                    </span>
+                </div>
             </div>
             <CashFlowDetails transactions={transactions} />
             <CashInModal
