@@ -10,6 +10,12 @@
             @apply outline-none;
             @apply ring-2;
         }
+
+        &:hover {
+            box-shadow: 4px 6px 4px 2px #93C5FD;
+            outline: none;
+            @apply border border-solid border-white;
+        }
     }
 
     .btn-red {
@@ -18,6 +24,12 @@
         &:focus {
             @apply outline-none;
             @apply ring-2;
+        }
+
+        &:hover {
+            box-shadow: 4px 6px 4px 2px #FCA5A5;
+            outline: none;
+            @apply border border-solid border-white;
         }
     }
 
