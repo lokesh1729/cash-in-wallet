@@ -85,7 +85,7 @@ function App() {
             </div>
             <div className="flex flex-col bg-white w-full">
                 <div className="text-sm text-gray-800 text-left mx-8 my-2">
-                    * by default it shows only the current month transactions.
+                    * by default it shows only the current week transactions.
                     Apply filters to refine results.
                 </div>
                 <div className="flexWithBorderPadding">

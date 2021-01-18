@@ -14,13 +14,11 @@
     padding: 20px;
 }
 
-#filterTransacionsWrapper {
-    min-height: 5rem;
+.FilterModal {
+    @extend .ReactModal;
+    height: 78vh;
 }
 
-#searchTransactions {
-    &:focus {
-        outline: none;
-        border: 1px solid #1860e1;
-    }
+#filterTransacionsWrapper {
+    min-height: 5rem;
 }

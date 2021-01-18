@@ -24,11 +24,10 @@ export default function FilterTransactions() {
                     className="absolute text-sm text-gray-500 left-2"
                 />
                 <input
-                    id="searchTransactions"
                     type="search"
                     value={searchTerm}
                     placeholder="Search"
-                    className="w-80 h-10 pl-7 pr-8 py-3 appearance-none rounded leading-normal text-base text-gray-600 shadow-md mr-2"
+                    className="input w-80 h-10 pl-7 pr-8 py-3 mr-2"
                     onChange={(event) => setSearchTerm(event.target.value)}
                 />
                 {searchTerm.length > 0 && (

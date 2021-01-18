@@ -11,6 +11,9 @@ export default function CashOutModal({
     const [cashOut, changeCashOut] = useState(0);
     const [cashOutComment, changeCashOutComment] = useState("");
     function addCashOut() {
+        if (cashOut <= 0) {
+            return;
+        }
         cashDispatch({
             type: CASH_OUT,
             amount: cashOut,

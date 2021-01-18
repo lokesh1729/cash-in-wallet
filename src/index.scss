@@ -1,0 +1,64 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer components {
+    .btn-blue {
+        @apply bg-blue-500 border border-white border-solid cursor-pointer p-4 rounded-md text-base text-white;
+
+        &:focus {
+            @apply outline-none;
+            @apply ring-2;
+        }
+    }
+
+    .btn-red {
+        @apply bg-red-500 border border-white border-solid cursor-pointer p-4 rounded-md text-base text-white;
+
+        &:focus {
+            @apply outline-none;
+            @apply ring-2;
+        }
+    }
+
+    .input {
+        @apply appearance-none p-4 leading-normal text-base text-gray-600 border border-solid border-gray-300 rounded shadow-md;
+
+        &:focus {
+            outline: none;
+            border: 1px solid #1860e1;
+        }
+    }
+
+    .boldText {
+        @apply text-gray-700 font-bold text-base font-sans;
+    }
+
+    .graySmallSemiboldFont {
+        @apply text-gray-500 text-sm font-semibold;
+    }
+
+    .flexWithBorderPadding {
+        @apply flex flex-row justify-between border-b border-solid border-gray-300 px-8 py-2;
+    }
+
+    .cardContainer {
+        @apply bg-white shadow-md w-full;
+    }
+
+    .highlight {
+        @apply text-2xl bg-yellow-300 font-serif p-2 rounded-sm text-gray-700;
+    }
+
+    .normalBlack {
+        @apply text-base text-black;
+    }
+
+    .mediumBoldBlack {
+        @apply text-base text-black font-medium;
+    }
+
+    .semiBoldBlack {
+        @apply text-base text-black font-semibold;
+    }
+}

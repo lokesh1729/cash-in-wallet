@@ -11,6 +11,9 @@ export default function CashInModal({
     const [cashIn, changeCashIn] = useState(0);
     const [cashInComment, changeCashInComment] = useState("");
     function addCashIn() {
+        if (cashIn <= 0) {
+            return;
+        }
         cashDispatch({
             type: CASH_IN,
             amount: cashIn,
